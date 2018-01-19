@@ -1,27 +1,16 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
-// import './App.css';
+import TodoList from './components/TodoList';
 
 class App extends Component {
   render() {
+    let listItems = ['Drew Barrymore', 'Scarlett Johansson', 'Emma Stone'];
     return (
       <div className="App">
         <header className="App-header">
-          {/* <img src={logo} className="App-logo" alt="logo" /> */}
           <h1 className="App-title">React Todo List</h1>
         </header>
         <div className="todo container">
-          <div className="todo addnew">
-            <input type="text" id='newtodo' placeholder="Add new todo"/>
-          </div>
-          <ul className="todo list">
-            <li className="todo item">
-              do stuff
-            </li>
-            <li className="todo item">
-              do other stuff
-            </li>
-          </ul>
+          <TodoList listItems={ listItems } />
         </div>
       </div>
     );
