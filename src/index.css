@@ -3,3 +3,12 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.App {
+  margin: 0 30%;
+  width: 40%;
+}
+
+input {
+  width: 100%;
+}
