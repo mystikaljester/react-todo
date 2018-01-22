@@ -3,27 +3,28 @@ import React, {Component} from 'react';
 class TodoInputForm extends Component {
   constructor(props) {
     super(props);
-    // this.state = {value: ''};
+    this.state = {value: ''};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
-    console.log("event.target.value=" + event.target.value);
     this.props.onValueChange(event.target.value);
   }
 
   handleSubmit(event) {
-    alert(this.props.value);
-    this.setState('');
+    console.log(this.props.value);
+    this.props.onSubmitPress(this.props.value);
     event.preventDefault();
+    this.props.clearInput();
   }
 
   render() {
     const value = this.props.value;
     return(
-      <form className="todo addnew" onSubmit={this.handleSubmit}>
-        <input type="text" id="addTodo" placeholder="Add new todo" value={value} onChange={this.handleChange} />
+      <form className="todo addnew" onSubmit={this.handleSubmit} autoComplete="new-password">
+        <input type="text" id="addTodo" autoComplete="off" placeholder="Add new todo"
+          value={value} onChange={this.handleChange} />
       </form>
     );
   }
