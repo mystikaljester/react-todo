@@ -37,23 +37,27 @@ class TodoList extends Component {
 
   render() {
     return (
-      <div className="todo container">
-        <TodoInputForm
-          clearInput = { this.handleClearInput }
-          onSubmitPress = { this.handleSubmit }
-          onValueChange = { this.handleValueChange }
-          value = { this.state.value } />
-        <ul>
-          {
-            this.state.listItems.map((item, index) => {
-              return <TodoItem
-                item = { item }
-                key = { index }
-                id = { index }
-                onTodoClick = { this.handleTodoClick } />;
-            })
-          }
-        </ul>
+      <div className="ui eight column centered grid">
+        <div className="ui row">
+          <TodoInputForm
+            clearInput = { this.handleClearInput }
+            onSubmitPress = { this.handleSubmit }
+            onValueChange = { this.handleValueChange }
+            value = { this.state.value } />
+        </div>
+        <div className="ui row">
+          <div className="ui divided items">
+            {
+              this.state.listItems.map((item, index) => {
+                return <TodoItem
+                  item = { item }
+                  key = { index }
+                  id = { index }
+                  onTodoClick = { this.handleTodoClick } />;
+              })
+            }
+          </div>
+        </div>
       </div>
     );
   }

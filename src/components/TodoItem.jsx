@@ -12,7 +12,12 @@ class TodoItem extends Component {
 
   render() {
     return (
-      <li id={ this.props.id } onClick={this.handleClick}>{ this.props.item }</li>
+      <div className="item" id={ this.props.id } onClick={this.handleClick}>
+        <i className="large remove icon"></i>
+        <div className="description">
+          { this.props.item }
+        </div>
+      </div>
     );
   }
 }

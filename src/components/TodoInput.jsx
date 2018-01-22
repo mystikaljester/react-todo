@@ -23,8 +23,10 @@ class TodoInputForm extends Component {
     const value = this.props.value;
     return(
       <form className="todo addnew" onSubmit={this.handleSubmit} autoComplete="new-password">
-        <input type="text" id="addTodo" autoComplete="off" placeholder="Add new todo"
-          value={value} onChange={this.handleChange} />
+        <div className="ui input">
+          <input type="text" id="addTodo" autoComplete="off" placeholder="Add new todo" className="ui input"
+            value={value} onChange={this.handleChange} />
+        </div>
       </form>
     );
   }
