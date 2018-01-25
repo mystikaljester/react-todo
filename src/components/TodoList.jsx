@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TodoItem from './TodoItem';
 import TodoInputForm from './TodoInput';
+import { connect } from 'react-redux';
 
 class TodoList extends Component {
   constructor(props) {
@@ -10,9 +11,14 @@ class TodoList extends Component {
     this.handleClearInput = this.handleClearInput.bind(this);
     this.handleTodoClick = this.handleTodoClick.bind(this);
     this.state = {
-      listItems: ['Drew Barrymore', 'Scarlett Johansson', 'Emma Stone'],
+      listItems: ['Drew Barrymore', 'Scarlett Johansson', 'Emma Stone', 'Emma Watson'],
       value: ''
     }
+  }
+
+  componentWillMount() {
+    const { dispatch } = this.props; // this is es6 magic
+    dispatch(fetchTodos);
   }
 
   handleValueChange(value) {
@@ -36,6 +42,20 @@ class TodoList extends Component {
   }
 
   render() {
+    const todos = { this.props };
+    if (!todos) {
+      return <div></div>
+    }
+
+    const rows = {
+      todos.map((item, index) => {
+        return <TodoItem
+          item = { item }
+          key = { index }
+          id = { index }
+          onTodoClick = { this.handleTodoClick } />;
+      })
+    }
     return (
       <div className="ui eight column centered grid">
         <div className="ui row">
@@ -46,8 +66,8 @@ class TodoList extends Component {
             value = { this.state.value } />
         </div>
         <div className="ui row">
-          <div className="ui divided items">
-            {
+          <div className="ui divided items">{ rows }</div>
+            {/* {
               this.state.listItems.map((item, index) => {
                 return <TodoItem
                   item = { item }
@@ -55,7 +75,7 @@ class TodoList extends Component {
                   id = { index }
                   onTodoClick = { this.handleTodoClick } />;
               })
-            }
+            } */}
           </div>
         </div>
       </div>
@@ -63,4 +83,9 @@ class TodoList extends Component {
   }
 }
 
-export default TodoList;
+function mapStateToProps(state) {
+  return { todos: state.todos };
+}
+
+// export default TodoList;
+export default connect(mapStateToProps)(TodoList);
